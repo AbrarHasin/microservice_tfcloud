@@ -5,7 +5,7 @@ module "autoscaling" {
   for_each = {
     # On-demand instances
     ex-1 = {
-      instance_type              = "t3.micro"
+      instance_type              = "t3.medium"
       use_mixed_instances_policy = false
       mixed_instances_policy     = {}
       user_data                  = <<-EOT
@@ -20,7 +20,7 @@ module "autoscaling" {
     }
     # Spot instances
     ex-2 = {
-      instance_type              = "t3.micro"
+      instance_type              = "t3.medium"
       use_mixed_instances_policy = true
       mixed_instances_policy = {
         instances_distribution = {
@@ -31,11 +31,11 @@ module "autoscaling" {
 
         override = [
           {
-            instance_type     = "t3.large"
+            instance_type     = "m4.large"
             weighted_capacity = "2"
           },
           {
-            instance_type     = "t3.medium"
+            instance_type     = "t3.large"
             weighted_capacity = "1"
           },
         ]
@@ -74,7 +74,7 @@ module "autoscaling" {
   health_check_type   = "EC2"
   min_size            = 1
   max_size            = 5
-  desired_capacity    = 1
+  desired_capacity    = 2
 
   # https://github.com/hashicorp/terraform-provider-aws/issues/12582
   autoscaling_group_tags = {
