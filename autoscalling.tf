@@ -31,11 +31,11 @@ module "autoscaling" {
 
         override = [
           {
-            instance_type     = "m4.large"
+            instance_type     = "t3.large"
             weighted_capacity = "2"
           },
           {
-            instance_type     = "t3.large"
+            instance_type     = "t3.medium"
             weighted_capacity = "1"
           },
         ]
@@ -74,7 +74,7 @@ module "autoscaling" {
   health_check_type   = "EC2"
   min_size            = 1
   max_size            = 5
-  desired_capacity    = 2
+  desired_capacity    = 1
 
   # https://github.com/hashicorp/terraform-provider-aws/issues/12582
   autoscaling_group_tags = {
