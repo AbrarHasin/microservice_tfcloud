@@ -1,5 +1,6 @@
 module "ecs_cluster" {
-  source = "../../modules/cluster"
+  source  = "terraform-aws-modules/ecs/aws//modules/cluster"
+  version = "5.2.2"
 
   cluster_name = local.name
 
@@ -45,7 +46,8 @@ module "ecs_cluster" {
 }
 
 module "ecs_service" {
-  source = "../../modules/service"
+  source  = "terraform-aws-modules/ecs/aws//modules/service"
+  version = "5.2.2"
 
   # Service
   name        = local.name
